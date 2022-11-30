@@ -5,8 +5,6 @@ import br.com.letscode.turmaitau.contaBancaria.validacoes.ValidacaoContaBancaria
 
 import java.math.BigDecimal;
 
-import static java.awt.AWTEventMulticaster.add;
-
 public abstract class Conta {
 
     public String numero;

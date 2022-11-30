@@ -8,6 +8,7 @@ import br.com.letscode.turmaitau.contaBancaria.conta.ContaCorrente;
 import br.com.letscode.turmaitau.contaBancaria.validacoes.EntradaContaInvalidaException;
 import br.com.letscode.turmaitau.contaBancaria.validacoes.EntradaTipoPessoaException;
 import br.com.letscode.turmaitau.contaBancaria.validacoes.ValidacaoContaBancariaException;
+import jdk.internal.org.objectweb.asm.tree.InsnList;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -16,10 +17,9 @@ import java.util.Scanner;
 
 public class AplicacaoMain {
 
-    Scanner entrada;
-
     public AplicacaoMain() {
-        entrada = new Scanner(System.in);
+        try (Scanner entrada = new Scanner(System.in)) {
+        }
     }
 
     public static void main(String[] args) {
@@ -53,12 +53,16 @@ public class AplicacaoMain {
 
     }
 
+    private void operacaoConta(ContaCorrente conta) {
+    }
+
     private ContaCorrente criarConta(Cliente cliente) {
     }
 
 
     private ClientePessoaFisica recuperarDadosPessoaFisica() {
         System.out.print("\nNome: ");
+        InsnList.InsnListIterator entrada = null;
         String nome = entrada.next();
 
         System.out.print("\nCPF: ");
@@ -69,6 +73,7 @@ public class AplicacaoMain {
 
     private ClientePessoaJuridica recuperarDadosPessoaJuridica() {
         System.out.print("\nNome: ");
+        InsnList.InsnListIterator entrada;
         String nome = entrada.next();
 
         System.out.print("\nCNPJ: ");
@@ -79,56 +84,4 @@ public class AplicacaoMain {
 
 
 
-    private void operacaoConta(ContaCorrente conta) throws ValidacaoContaBancariaException {
 
-        System.out.print("\nOperaçao:" +
-                "\n Sacar (S)" +
-                "\n Depositar (D) " +
-                "\n Transferir (T) " +
-                "\n Saldo (SD) " +
-                "\n Dados Conta (DC) " +
-                "\n Sair (X)" +
-                "\n");
-        String operacao = entrada.next().trim();
-
-        if (operacao.equalsIgnoreCase("S")) {
-            System.out.print("\nValor saque: ");
-            String valorEntrada = entrada.next();
-            BigDecimal valor = new BigDecimal(valorEntrada);
-            conta.SacarConta (valor);
-            imprimirSaldo(conta);
-        } else if (operacao.equalsIgnoreCase("D")) {
-            System.out.print("\nValor deposito: ");
-            String valorEntrada = entrada.next();
-            BigDecimal valor = new BigDecimal(valorEntrada);
-            conta.DepositarConta (valor);
-            imprimirSaldo(conta);
-        } else if (operacao.equalsIgnoreCase("T")) {
-            System.out.print("\nValor transferencia: ");
-            String valorEntrada = entrada.next();
-            BigDecimal valor = new BigDecimal(valorEntrada);
-
-            System.out.print("\nNumero C/C destino: ");
-            String numeroContaDestino = entrada.next();
-
-            conta.transferir(new ContaCorrente(numeroContaDestino), valor);
-            imprimirSaldo(conta);
-        } else if (operacao.equalsIgnoreCase("SD")) {
-            imprimirSaldo(conta);
-        } else if (operacao.equalsIgnoreCase("DC")) {
-            System.out.println(conta.toString());
-        } else if (operacao.equalsIgnoreCase("X")) {
-            System.out.print("\n \uD83D\uDC4B \uD83D\uDC4B \uD83D\uDC4B Tchau!! " + conta.getCliente().getNome());
-            imprimirSaldo(conta);
-            System.exit(0);
-        }
-
-        operacaoConta(conta);
-
-    }
-
-    private void imprimirSaldo(Conta conta) {
-        System.out.println("\n \uD83D\uDCB0 Saldo: R$ " + conta.getSaldo().setScale(4, RoundingMode.HALF_EVEN));
-    }
-
-}

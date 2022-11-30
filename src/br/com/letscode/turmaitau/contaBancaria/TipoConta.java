@@ -11,33 +11,29 @@ import br.com.letscode.turmaitau.contaBancaria.validacoes.EntradaContaInvalidaEx
 
 public class TipoConta extends AplicacaoMain {
 
-    private ContaCorrente criarConta(Cliente cliente) throws EntradaContaInvalidaException {
+    private Object criarConta(Cliente cliente) throws EntradaContaInvalidaException {
 
-        String tipoConta = null;
+        Cliente cliente2 = cliente;
+        Cliente cliente1 = cliente2;
 
-        if (cliente instanceof ClientePessoaFisica) {
-            ClientePessoaFisica cliente1 = (ClientePessoaFisica) cliente;
+        (ClientePessoaFisica) cliente2
+        if (cliente2 instanceof ClientePessoaFisica) {
+            ((ClientePessoaFisica) cliente2)
             System.out.print("\nTipo Conta CC, CP, CI: ");
-        } if (cliente instanceof ClientePessoaJuridica) {
-            ClientePessoaJuridica cliente1 = (ClientePessoaJuridica) cliente;
+        } if (cliente2 instanceof ClientePessoaJuridica) {
             System.out.print("\nTipo Conta CC, CI: ");
         }
 
-
-        return null;
-    }
-
-}
-
-    tipoConta = entrada.next().trim();
+        String tipoConta = entrada.next().trim();
 
         if (tipoConta.equalsIgnoreCase("CC")) {
-        Cliente cliente;
-        return new ContaCorrente(String.valueOf(System.currentTimeMillis()), cliente);
-    } else if (tipoConta.equalsIgnoreCase("CP")) {
-        return new ContaPoupanca(String.valueOf(System.currentTimeMillis()), (ClientePessoaFisica) cliente);
-    } else if (tipoConta.equalsIgnoreCase("CI")) {
-        return new ContaInvestimento(String.valueOf(System.currentTimeMillis()), cliente);
-    } else {
-        throw new EntradaContaInvalidaException("Tipo conta invalida");
+            return new ContaCorrente(String.valueOf(System.currentTimeMillis()), cliente2);
+        } else if (tipoConta.equalsIgnoreCase("CP")) {
+            return new ContaPoupanca(String.valueOf(System.currentTimeMillis()), ((ClientePessoaFisica) cliente2));
+        } else if (tipoConta.equalsIgnoreCase("CI")) {
+            return new ContaInvestimento(String.valueOf(System.currentTimeMillis()), cliente2);
+        } else {
+            throw new EntradaContaInvalidaException("Tipo conta invalida");
+        }
+    }
 }

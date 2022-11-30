@@ -63,12 +63,6 @@ public abstract class ContaMain {
         return numero;
     }
 
-    private void validarValorNullOuNegativo(BigDecimal valor) throws ValorInvalidoException {
-        if (Objects.isNull(valor) || valor.signum() < 0) {
-            throw new ValorInvalidoException("Valor nao pode ser nagtivo ou nulo");
-        }
-    }
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Conta{");

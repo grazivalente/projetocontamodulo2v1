@@ -2,6 +2,7 @@ package br.com.letscode.turmaitau.contaBancaria;
 
 import br.com.letscode.turmaitau.contaBancaria.validacoes.EntradaTipoPessoaException;
 import jdk.internal.org.objectweb.asm.tree.InsnList;
+import jdk.internal.org.objectweb.asm.tree.InsnList.InsnListIterator;
 
 public interface recuperarDadosCliente {
 
@@ -11,7 +12,7 @@ public interface recuperarDadosCliente {
 
 
         System.out.print("\nTipo cliente (F/J): ");
-        InsnList.InsnListIterator entrada = null;
+        public final class InsnList entrada = null;
         String tipoPessoa = (String) entrada.next();
 
         if (tipoPessoa.equalsIgnoreCase("F")) {
