@@ -3,6 +3,7 @@ package operacoes;
 import Exceptions.ValidarExcecao;
 import br.com.letscode.turmaitau.contaBancaria.cliente.Cliente;
 import br.com.letscode.turmaitau.contaBancaria.conta.Conta;
+import br.com.letscode.turmaitau.contaBancaria.conta.ContaCorrente;
 import br.com.letscode.turmaitau.contaBancaria.validacoes.ValidacaoContaBancariaException;
 import br.com.letscode.turmaitau.contaBancaria.validacoes.ValorInvalidoException;
 
@@ -32,11 +33,13 @@ public abstract class ContaMain {
         this.cliente = cliente;
 }
 
-    public void setNumero(String numero) {
+    public void transferir(ContaCorrente contaCorrente, BigDecimal valor) {
+    }
+
+    public class setNumero(String numero) {
         this.numero = numero;
     }
 
-    public void validarValorNullOuNegativo(BigDecimal valor) {
     }
 
     protected void AdicionarSaldo(BigDecimal valor) {
@@ -89,4 +92,6 @@ public abstract class ContaMain {
         return Objects.hash(numero);
     }
 
+    public void SacarConta(BigDecimal valor) {
+    }
 }
